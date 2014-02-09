@@ -1,16 +1,25 @@
-# smart-change-directory (scd)
+# scd -- smart-change-directory
 
-[Z shell](http://www.zsh.org/) function for visiting any directory in
-a Unix shell, [Vim](http://www.vim.org/) or [IPython](http://ipython.org/).
+This plugin defines `scd` shell function for changing to any directory with
+a few keystrokes.
 
-`scd` is a Z shell (Zsh) script for changing to any directory with a few
-keystrokes.  `scd` keeps history of the visited directories, which
-serves as an index of the known paths.  The directory index is updated after
-every `cd` command in the shell and can be also filled manually by running
-`scd -a`.  To switch to some directory, `scd` needs few fragments of the
-desired path to match with the index.  A selection menu is displayed in case
-of several matches, with a preference given to recently visited paths.  scd
-can create permanent directory aliases, which directly map to the target path.
+`scd` keeps history of the visited directories, which serves as an index of
+the known paths.  The directory index is updated after every `cd` command in
+the shell and can be also filled manually by running `scd -a`.  To switch to
+some directory, `scd` needs few fragments of the desired path to match with
+the index.  A selection menu is displayed in case of several matches, with a
+preference given to recently visited paths.  `scd` can create permanent
+directory aliases, which in zsh directly map to the target path.
+
+## INSTALLATION
+
+For oh-my-zsh, add `scd` to the `plugin` array in the ~/.zshrc file as in the
+[template file](templates/zshrc.zsh-template#L45).
+
+`scd` was written for *zsh*, but can be also used with *bash*, *dash* or
+*tcsh* shells.  `scd` is also available as [Vim](http://www.vim.org/) plugin
+and [IPython](http://ipython.org/) extension.  For details, see the project
+page https://github.com/pavoljuhas/smart-change-directory.
 
 ## SYNOPSIS
 
@@ -48,37 +57,6 @@ scd [options] [pattern1 pattern2 ...]
   display this options summary and exit.</dd>
 </dl>
 
-
-## INSTALLATION
-
-## Unix shell
-
-1.  Make sure that Z shell is installed.  On Linux it is usually the `zsh`
-    package.
-
-2.  Copy or symlink the [bin/scd](bin/scd) script to some
-    directory in the PATH.  Make sure `scd` has executable permissions set or
-    add them with `chmod +x scd`.
-
-3.  Find out what shell is active for your account by running `ps -p $$`.
-
-4.  Edit the startup file for your shell, e.g., `.bashrc` for `bash`,
-    and have it source the corresponding scd setup file from
-    [shellrcfiles](shellrcfiles).
-    ```sh
-    source ~/Downloads/smart-change-directory/shellrcfiles/bashrc_scd
-    ```
-
-    For recent versions of Zsh use `zshrc_scd`.  Use `zshrc_scd_42` for Zsh
-    version 4.2 or older.  Note that scd aliases are named directories in Zsh
-    and thus can be expanded as `~NAME` in the shell.
-
-    For `dash` or old Bource shells, replace `source` command above with `.`.
-
-5.  Create `~/bin/` directory for scd-generated command script.
-    (Not needed for Zsh)
-
-
 ## Examples
 
 ```sh
@@ -102,80 +80,6 @@ scd --alias=xray
 
 # Jump to a previously defined aliased directory
 scd xray
-```
-
-## Installation as Vim plugin
-
-1.  Copy or symlink [vim/plugin/scd.vim](vim/plugin/scd.vim)
-    file to the `~/.vim/plugin/` directory or source it from `.vimrc`.
-
-2.  If `scd` is not in the PATH, set the `g:scd_command` variable in `.vimrc`
-    to specify its location.
-    ```VimL
-    let g:scd_command = '/path/to/scd'
-    ```
-
-3.  When Vim is set to use zsh for system commands `:set shell=/bin/zsh`, scd
-    aliases can be expanded in Vim command mode, as in `:e ~foo/file.txt`.
-    Allow this by adding the following line to `~/.zshenv`
-    ```sh
-    if [[ -s ~/.scdalias.zsh ]]; then source ~/.scdalias.zsh; fi
-    ```
-
-## Examples
-
-```VimL
-" recursively index ~/.vim/ and its subdirectories
-:Scd -ar ~/.vim
-
-" jump to the ~/.vim/ftplugin/ directory
-:Scd vi ftpl
-
-" change to the most recently visited doc directory
-:Scd doc
-
-" show selection menu with directories ranked by likelihood
-:Scd -v
-
-" same as Scd, but use the :lcd Vim command
-:Slcd
-
-" complete scd-defined directory aliases
-:Scd <Tab>
-```
-
-
-## Installation as IPython extension
-
-1. Copy or symlink [ipython/ipy_scd.py](ipython/ipy_scd.py)
-   to some directory in Python module path.
-
-2. In IPython terminal session do `%load_ext ipy_scd`
-   to define the `%scd` magic command.  This also modifies the `%cd`,
-   `%pushd`, `%popd` magics to add directories to the scd index.  To load
-   `ipy_scd` for every IPython session, modify
-   `.../profile_default/ipython_config.py` so that it contains
-   ```Python
-   c.InteractiveShellApp.extensions = ['ipy_scd']
-   ```
-
-   In IPython 0.10, which does not support extensions, import `ipy_scd` from
-   the `~/.ipython/ipy_user_conf.py` startup file.  This should activate the
-   `%scd` magic just as above.
-
-3. If `scd` is not in the PATH, its location can be defined with
-   ```Python
-   import ipy_scd
-   ipy_scd.scd_executable = '/path/to/scd'
-
-## Examples
-
-```Python
-# recursively index ~/.local/ and its subdirectories
-%scd -ar ~/.local
-
-# jump to the site-packages directory (if exists in ~/.local)
-%scd site pack
 ```
 
 # FILES
