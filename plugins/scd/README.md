@@ -13,7 +13,7 @@ directory aliases, which appear as named directories in zsh session.
 
 ## INSTALLATION
 
-For oh-my-zsh, add `scd` to the `plugin` array in the ~/.zshrc file as in the
+For oh-my-zsh, add `scd` to the `plugins` array in the ~/.zshrc file as in the
 [template file](../../templates/zshrc.zsh-template#L45).
 
 Besides zsh, `scd` can be used with *bash*, *dash* or *tcsh*
