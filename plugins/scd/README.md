@@ -1,6 +1,6 @@
-# scd -- smart-change-directory
+# scd - smart change of directory
 
-This plugin defines `scd` shell function for changing to any directory with
+Define `scd` shell function for changing to any directory with
 a few keystrokes.
 
 `scd` keeps history of the visited directories, which serves as an index of
@@ -9,17 +9,17 @@ the shell and can be also filled manually by running `scd -a`.  To switch to
 some directory, `scd` needs few fragments of the desired path to match with
 the index.  A selection menu is displayed in case of several matches, with a
 preference given to recently visited paths.  `scd` can create permanent
-directory aliases, which in zsh directly map to the target path.
+directory aliases, which appear as named directories in zsh session.
 
 ## INSTALLATION
 
 For oh-my-zsh, add `scd` to the `plugin` array in the ~/.zshrc file as in the
-[template file](templates/zshrc.zsh-template#L45).
+[template file](../../templates/zshrc.zsh-template#L45).
 
-`scd` was written for *zsh*, but can be also used with *bash*, *dash* or
-*tcsh* shells.  `scd` is also available as [Vim](http://www.vim.org/) plugin
-and [IPython](http://ipython.org/) extension.  For details, see the project
-page https://github.com/pavoljuhas/smart-change-directory.
+Besides zsh, `scd` can be used with *bash*, *dash* or *tcsh*
+shells and is also available as [Vim](http://www.vim.org/) plugin and
+[IPython](http://ipython.org/) extension.  For installation details, see
+https://github.com/pavoljuhas/smart-change-directory.
 
 ## SYNOPSIS
 
