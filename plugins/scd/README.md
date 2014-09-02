@@ -11,12 +11,9 @@ the index.  A selection menu is displayed in case of several matches, with a
 preference given to recently visited paths.  `scd` can create permanent
 directory aliases, which appear as named directories in zsh session.
 
-## INSTALLATION
+## INSTALLATION NOTES
 
-For oh-my-zsh, add `scd` to the `plugins` array in the ~/.zshrc file as in the
-[template file](../../templates/zshrc.zsh-template#L45).
-
-Besides zsh, `scd` can be used with *bash*, *dash* or *tcsh*
+Besides oh-my-zsh, `scd` can be used with *bash*, *dash* or *tcsh*
 shells and is also available as [Vim](http://www.vim.org/) plugin and
 [IPython](http://ipython.org/) extension.  For installation details, see
 https://github.com/pavoljuhas/smart-change-directory.
