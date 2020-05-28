@@ -28,7 +28,7 @@ scd [options] [pattern1 pattern2 ...]
 
 <dl><dt>
 -a, --add</dt><dd>
-  add specified directories to the directory index.</dd><dt>
+  add current or specified directories to the directory index.</dd><dt>
 
 --unindex</dt><dd>
   remove current or specified directories from the index.</dd><dt>
@@ -42,11 +42,13 @@ scd [options] [pattern1 pattern2 ...]
 
 --unalias</dt><dd>
   remove ALIAS definition for the current or specified directory from
-  <em>~/.scdalias.zsh</em>.</dd><dt>
+  <em>~/.scdalias.zsh</em>.  Use "OLD" to purge aliases to non-existent
+  directories.</dd><dt>
 
 -A, --all</dt><dd>
-  include all matching directories.  Disregard matching by directory
-  alias and filtering of less likely paths.</dd><dt>
+  display all directories even those excluded by patterns in
+  <em>~/.scdignore</em>.  Disregard the unique matching for a
+  directory alias and filtering of less likely paths.</dd><dt>
 
 --list</dt><dd>
   show matching directories and exit.</dd><dt>
@@ -90,7 +92,15 @@ scd xray
     time-stamped index of visited directories.</dd><dt>
 
 ~/.scdalias.zsh</dt><dd>
-    scd-generated definitions of directory aliases.</dd>
+    scd-generated definitions of directory aliases.</dd><dt>
+
+~/.scdignore</dt><dd>
+    <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Operators">
+    glob patterns</a> for paths to be ignored in the scd search, for example,
+    <code>/mnt/backup/*</code>.  The patterns are specified one per line
+    and are matched assuming the <em>extendedglob</em> zsh option.  Lines
+    starting with "#" are skipped as comments.  The .scdignore patterns
+    are not applied in the <em>--all</em> mode.</dd>
 </dl>
 
 # ENVIRONMENT
