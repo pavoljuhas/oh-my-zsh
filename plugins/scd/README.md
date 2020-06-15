@@ -24,6 +24,27 @@ https://github.com/pavoljuhas/smart-change-directory.
 scd [options] [pattern1 pattern2 ...]
 ```
 
+
+## PATTERNS
+
+Patterns may use all zsh [glob operators](
+http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Operators)
+available with *extendedglob* option.  Specified patterns must match
+the absolute path and at least one of them must match in the tail.
+Several special patterns are also recognized as follows:
+
+<dl><dt>
+^PAT</dt><dd>
+  PAT must match at the beginning of the path, for example, "^/home"</dd><dt>
+PAT$</dt><dd>
+  require PAT to match the end of the path, "man$"</dd><dt>
+./</dt><dd>
+  match only subdirectories of the current directory</dd><dt>
+:PAT</dt><dd>
+  require PAT to match over the tail component, ":doc", ":re/doc"</dd>
+</dl>
+
+
 ## OPTIONS
 
 <dl><dt>
@@ -49,6 +70,9 @@ scd [options] [pattern1 pattern2 ...]
   display all directories even those excluded by patterns in
   <em>~/.scdignore</em>.  Disregard the unique matching for a
   directory alias and filtering of less likely paths.</dd><dt>
+
+-p, --push</dt><dd>
+  use "pushd" to change to the target directory.</dd><dt>
 
 --list</dt><dd>
   show matching directories and exit.</dd><dt>

@@ -5,9 +5,9 @@ autoload -Uz scd
 ## If the scd function exists, define a change-directory-hook function
 ## to record visited directories in the scd index.
 if [[ ${+functions[scd]} == 1 ]]; then
-    _scd_chpwd_hook() { scd --add $PWD }
+    chpwd_scd() { scd --add $PWD }
     autoload -Uz add-zsh-hook
-    add-zsh-hook chpwd _scd_chpwd_hook
+    add-zsh-hook chpwd chpwd_scd
 fi
 
 
