@@ -214,7 +214,7 @@ _scd_Y19oug_compress() {
             pmin = exp(minlogprob);
         }
         /^: deleted:0;/ { next; }
-        length($0) < 4096 && $2 > 0 {
+        length($0) < 4096 && $2 > 1000 {
             df = $0;
             sub("^[^;]*;", "", df);
             if (!df)  next;
@@ -239,7 +239,8 @@ _scd_Y19oug_compress() {
 
 # Rewrite directory index if it is at least 20% oversized.
 local curhistsize
-if [[ -s $SCD_HISTFILE ]] && curhistsize=$(wc -l <$SCD_HISTFILE) && \
+if [[ -z $opt_unindex && -s $SCD_HISTFILE ]] && \
+curhistsize=$(wc -l <$SCD_HISTFILE) && \
 (( $curhistsize > 1.2 * $SCD_HISTSIZE )); then
     # Compress repeated entries in a background process.
     (
@@ -414,6 +415,7 @@ _scd_Y19oug_match() {
                     sub("//*[^/]*$", "", dp);
                     if (!dp)  break;
                 }
+                if ($2 <= 1000)  next;
                 tau = 1.0 * ($2 - epochseconds) / meanlife;
                 prob = (tau < minlogprob) ? pmin : exp(tau);
                 ptot[df] += prob;
